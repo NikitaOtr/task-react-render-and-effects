@@ -14,7 +14,8 @@ export const Effects: VFC<IProps> = ({ sourceId }) => {
         };
         subscribe(sourceId, callback);
         setLastMessage(-1);
-        return unsubscribe(sourceId, callback);
+        return () => unsubscribe(sourceId, callback);
     }, [sourceId]);
+
     return <div>{`${sourceId}: ${lastMessage}`}</div>;
 };
